@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth dark">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-31MRPGWSET"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-31MRPGWSET"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-31MRPGWSET');
-</script>
+      gtag('config', 'G-31MRPGWSET');
+    </script>
 
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <meta charset="UTF-8">
@@ -19,196 +19,587 @@
     <meta name="apple-mobile-web-app-status-bar-content" content="black-translucent">
     <meta name="msapplication-navbutton-color" content="#0a0c10">
     <title>YUSTTYY</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (for fallback icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['Montserrat', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* =====================================================================
+               УКАЖИТЕ ПУТЬ К ВАШЕЙ ГИФКЕ ЗДЕСЬ (например: url('bg.gif'))
+               ===================================================================== */
+            --bg-gif-url: url('bg.gif');
+        }
+
+        body {
+            background-color: #0a0c10;
+            color: #f3f5f8;
+            overflow-x: hidden;
+        }
+
+        /* Фиксированный слой фона под гифку */
+        #bg-gif-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-color: #0a0c10;
+            background-image: var(--bg-gif-url);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Лёгкое затемнение поверх самой гифки, чтобы убрать кислотный пересвет */
+        #bg-dim-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: rgba(10, 12, 16, 0.42);
+            pointer-events: none;
+        }
+
+        /* Подложки контента с высоким контрастом и матовым размытием (читаемо даже поверх белой/яркой гифки) */
+        .surface-panel {
+            background: rgba(10, 12, 16, 0.84);
+            backdrop-filter: blur(16px) saturate(135%);
+            -webkit-backdrop-filter: blur(16px) saturate(135%);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+        }
+
+        .surface-subcard {
+            background: rgba(18, 21, 28, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        /* Навбар с плотной подложкой */
+        .nav-surface {
+            background: rgba(10, 12, 16, 0.88);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Чёткая читаемость текста поверх любого фона */
+        .readable-text {
+            color: #eef1f6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+        }
+
+        /* Ссылки в стиле оригинального сайта */
+        .wiki-link {
+            color: #6ea8fe;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(110, 168, 254, 0.45);
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+        .wiki-link:hover {
+            color: #9ec5fe;
+            border-bottom-color: #9ec5fe;
+        }
+
+        /* Разделитель секций */
+        .section-separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+        }
+
+        /* Разделитель категорий с названием по центру */
+        .category-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            scroll-margin-top: 90px;
+        }
+        .category-divider::before,
+        .category-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+        }
+        .category-badge {
+            background: rgba(10, 12, 16, 0.88);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Кнопки соцсетей */
+        .social-btn {
+            background: rgba(22, 26, 34, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+        }
+        .social-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.35);
+            background: rgba(34, 40, 52, 0.95);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0c10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #282d38;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a4150;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans antialiased selection:bg-[#6ea8fe]/30 selection:text-white min-h-screen flex flex-col">
 
-<nav class="navbar">
-    <div class="container nav-container">
-        <div class="logo">
-            <img src="favicon.png" alt="YUSTTYY">
-            <span class="logo-text">YUSTTYY</span>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="#home" class="nav-link">Socials</a></li>
-            <li><a href="#wiki" class="nav-link">Wiki Exp</a></li>
-            <li><a href="#discord" class="nav-link">Discord Exp</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</nav>
+    <!-- Фиксированный слой под яркую GIF-картинку -->
+    <div id="bg-gif-layer" aria-hidden="true"></div>
+    <!-- Защитный слой затемнения -->
+    <div id="bg-dim-overlay" aria-hidden="true"></div>
 
-<main>
-        <section id="home" class="hero-section">
-            <div class="hero-container">
-                <div class="hero-left">
-                    <div class="hero-text">
-                        <p style="color: rgb(158, 158, 158);">Last update: June 7th</p>
-                    </div>
-                    <div class="hero-header">
-                        <h1 class="hero-title">Hi, I'm Yusttyy!</h1>
-                        <p class="hero-subtitle">Also known as yusty</p>
-                    </div>
-                    
-                    <div class="hero-text">
-                        <p>My name is Ilya, I'm 18 and I live in Belarus (🇧🇾). I speak Russian natively and English as a second language. I'm not really into gaming - I prefer working on my own projects that help others, such as contributing to wikis or managing discord servers. I have some experience in both areas, and I'm always happy to gain more.</p>
-                        <p>Currently, I'm practicing with CSS and working with templates, page styling, QoL features, creating and implementing categories, updating rules and regulations, and handling any other tedious tasks. I can also create pages and handle other basic tasks. I don't have any experience as a bureaucrat, but for the most part, I understand how everything works. I have my own test wiki, where I check core settings and templates, and only after that do I transfer the changes to one of the wikipedias I work on.</p>
-                        <p>Here is my <a href="https://meta.miraheze.org/wiki/Special:CentralAuth/Yusttyy" class="wiki-link">Global Miraheze account information</a></p>
-                    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar sticky top-0 z-50 w-full nav-surface">
+        <div class="max-w-[1140px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#home" class="logo flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg overflow-hidden bg-[#161920] border border-white/15 flex items-center justify-center shrink-0">
+                    <img src="favicon.png" alt="YUSTTYY" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="hidden font-display font-extrabold text-sm text-white items-center justify-center">Y</span>
                 </div>
-                
-                <div class="hero-right">
-                    <div class="info-card" style="display: flex; flex-direction: column;">
-                        <img id="lanyard-img" src="https://lanyard.cnrad.dev/api/928978204801269771" alt="lanyard profile readme">
-                    </div>
-                    
-                    <div class="info-card-bottom">
-                        <div class="achievements">
-                            <div class="achievement-item">
-                                <b>Interface Admin</b> @ Depth Spelunking
-                            </div>
-                            <div class="achievement-item">
-                                <b>Wiki Moderator</b> @ Fischipedia
-                            </div>
-                            <div class="achievement-item">
-                                <b>IRWA Wiki Member</b> (2 wikis)
-                            </div>
-                            <br>
-                            <div class="achievement-item">
-                                <b>Ex Discord Admin</b> @ 3+ Servers
-                            </div>
+                <span class="logo-text font-display font-extrabold text-lg tracking-wider text-white group-hover:text-[#6ea8fe] transition-colors">
+                    YUSTTYY
+                </span>
+            </a>
+
+            <div class="flex items-center gap-4 sm:gap-7">
+                <ul class="nav-menu hidden md:flex items-center gap-7 text-sm font-medium">
+                    <li><a href="#home" class="nav-link text-gray-200 hover:text-white transition-colors">Socials</a></li>
+                    <li><a href="#wiki" class="nav-link text-gray-200 hover:text-white transition-colors">Wiki Exp</a></li>
+                    <li><a href="#discord" class="nav-link text-gray-200 hover:text-white transition-colors">Discord Exp</a></li>
+                    <li><a href="#testing" class="nav-link text-gray-200 hover:text-white transition-colors">Testing Exp</a></li>
+                </ul>
+
+                <!-- Мобильный гамбургер -->
+                <button id="hamburger-btn" type="button" aria-label="Menu" class="hamburger md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10">
+                    <i id="hamburger-icon" class="fa-solid fa-bars text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Мобильное меню -->
+        <div id="mobile-nav" class="hidden md:hidden border-t border-white/10 bg-[#0a0c10]/95 px-4 py-3 space-y-1">
+            <a href="#home" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white">Socials</a>
+            <a href="#wiki" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white">Wiki Exp</a>
+            <a href="#discord" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white">Discord Exp</a>
+            <a href="#testing" class="mobile-link block py-2.5 px-3 rounded-lg text-sm font-medium text-gray-200 hover:bg-white/10 hover:text-white">Testing Exp</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-[1140px] w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12">
+
+        <!-- HERO SECTION (Двухколоночная структура как в оригинале) -->
+        <section id="home" class="hero-section scroll-mt-24">
+            <div class="hero-container grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+
+                <!-- Левая колонка: Приветствие и биография -->
+                <div class="hero-left lg:col-span-7 surface-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="hero-text mb-3">
+                            <p class="text-xs sm:text-sm font-medium" style="color: rgb(175, 180, 190);">Last update: June 7th</p>
                         </div>
-                        
-                        <div class="social-links">
-                            <a href="https://discord.com/users/928978204801269771" target="_blank">
-                                <img src="icons/discord.png" alt="Discord" class="social-icon">
-                            </a>
-                            <a href="https://tiktok.com/@yustenka" target="_blank">
-                                <img src="icons/tiktok.png" alt="TikTok" class="social-icon">
-                            </a>
-                            <a href="https://www.roblox.com/users/3590723102/profile" target="_blank">
-                                <img src="icons/roblox.png" alt="Roblox" class="social-icon">
-                            </a>
-                            <a href="https://ru.namemc.com/profile/yusttyy" target="_blank">
-                                <img src="icons/namemc.png" alt="NameMC" class="social-icon">
-                            </a>
-                            <a href="https://depthspelunking.miraheze.org/wiki/User:Yusttyy" target="_blank">
-                                <img src="icons/dswiki.png" alt="DS Wiki" class="social-icon">
-                            </a>
-                            <a href="https://fischipedia.org/wiki/User:Yusttyy" target="_blank">
-                                <img src="icons/fischwiki.png" alt="Fischipedia" class="social-icon">
-                            </a>
+
+                        <div class="hero-header mb-5">
+                            <h1 class="hero-title font-display font-extrabold text-3xl sm:text-4xl md:text-[42px] leading-tight text-white tracking-tight">
+                                Hi, I'm Yusttyy!
+                            </h1>
+                            <p class="hero-subtitle text-base sm:text-lg text-gray-300 mt-1 font-medium">
+                                Also known as yusty
+                            </p>
+                        </div>
+
+                        <div class="hero-text space-y-4 text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                My name is Ilya, I'm 18 and I live in Belarus (🇧🇾). I speak Russian natively and English as a second language. I'm not really into gaming - I prefer working on my own projects that help others, such as contributing to wikis or managing discord servers. I have some experience in both areas, and I'm always happy to gain more.
+                            </p>
+                            <p>
+                                Currently, I'm practicing with CSS and working with templates, page styling, QoL features, creating and implementing categories, updating rules and regulations, and handling any other tedious tasks. I can also create pages and handle other basic tasks. I don't have any experience as a bureaucrat, but for the most part, I understand how everything works. I have my own test wiki, where I check core settings and templates, and only after that do I transfer the changes to one of the wikipedias I work on.
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <div class="separator"></div>
-
-        <section id="wiki" class="content-section">
-            <div class="section-container section-left">
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>I'm a member of the <a href="https://indierobloxwikis.org" class="wiki-link"><b>Independent Roblox Wiki Alliance</b></a> (IRWA), which is basically a group of independent Roblox wikis working together. The idea is to help each other grow and get things done - whether that's through direct support, building tools, or just helping newer wikis find their own space. I joined the alliance because I'm a staff member of Fischipedia, and after some time I brought in another wiki.</p>
+                    <div class="hero-text mt-6 pt-4 border-t border-white/10 text-[15px] readable-text">
+                        <p>
+                            Here is my <a href="https://meta.miraheze.org/wiki/Special:CentralAuth/Yusttyy" target="_blank" rel="noopener noreferrer" class="wiki-link font-medium">Global Miraheze account information</a>
+                        </p>
                     </div>
                 </div>
-                <div class="section-image">
-                    <img src="images/irwa.png" alt="IRWA">
-                </div>
-            </div>
-        </section>
 
-        <section class="content-section">
-            <div class="section-container section-right">
-                <div class="section-image">
-                    <img src="images/fischwiki.png" alt="Fischipedia">
-                </div>
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>My experience with wikis started with <a href="https://fischipedia.org" class="wiki-link"><b>Fischipedia</b></a> - the official wiki for Fisch, and one of the largest wikis created on Miraheze. I created my account in December 2024, and by January 2025 I had become an official editor. After working on it for 9 months (with some breaks), in October of that same year I became a moderator (or Wiki Staff). Today, I am one of the oldest editors still working on the wiki.</p>
-                        <p>Currently, I'm inactive and have over 2800 edits.<br>
-                        <a href="https://fischipedia.org/wiki/User:Yusttyy" class="wiki-link">https://fischipedia.org/wiki/User:Yusttyy</a></p>
+                <!-- Правая колонка: Lanyard + Достижения + Соцсети -->
+                <div class="hero-right lg:col-span-5 flex flex-col gap-5">
+                    <!-- Верхняя карточка: Lanyard Discord -->
+                    <div class="info-card surface-panel rounded-2xl p-4 flex flex-col">
+                        <div class="rounded-xl overflow-hidden bg-[#11141c] border border-white/10">
+                            <img id="lanyard-img" src="https://lanyard.cnrad.dev/api/928978204801269771" alt="lanyard profile readme" class="w-full h-auto block">
+                        </div>
+                    </div>
+
+                    <!-- Нижняя карточка: Достижения и иконки соцсетей -->
+                    <div class="info-card-bottom surface-panel rounded-2xl p-6 flex-grow flex flex-col justify-between gap-6">
+                        <div class="achievements space-y-2.5 text-[15px] readable-text">
+                            <div class="achievement-item flex items-center gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#6ea8fe] shrink-0"></span>
+                                <span><b class="text-white">Interface Admin</b> @ Depth Spelunking</span>
+                            </div>
+                            <div class="achievement-item flex items-center gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#6ea8fe] shrink-0"></span>
+                                <span><b class="text-white">Wiki Moderator</b> @ Fischipedia</span>
+                            </div>
+                            <div class="achievement-item flex items-center gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#6ea8fe] shrink-0"></span>
+                                <span><b class="text-white">IRWA Wiki Member</b> (2 wikis)</span>
+                            </div>
+                            <div class="pt-2 mt-2 border-t border-white/10">
+                                <div class="achievement-item flex items-center gap-2.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
+                                    <span><b class="text-white">Ex Discord Admin</b> @ 3+ Servers</span>
+                                </div>
+                            </div>
+                            <div class="pt-2 mt-2 border-t border-white/10">
+                                <div class="achievement-item flex items-center gap-2.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                                    <span><b class="text-white">QA / Game Tester</b> @ [Project Name]</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Панель соцсетей (все 6 оригинальных иконок) -->
+                        <div class="social-links grid grid-cols-6 gap-2.5 pt-2">
+                            <a href="https://discord.com/users/928978204801269771" target="_blank" rel="noopener noreferrer" title="Discord" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/discord.png" alt="Discord" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-brands fa-discord hidden text-lg text-white"></i>
+                            </a>
+                            <a href="https://tiktok.com/@yustenka" target="_blank" rel="noopener noreferrer" title="TikTok" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/tiktok.png" alt="TikTok" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-brands fa-tiktok hidden text-lg text-white"></i>
+                            </a>
+                            <a href="https://www.roblox.com/users/3590723102/profile" target="_blank" rel="noopener noreferrer" title="Roblox" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/roblox.png" alt="Roblox" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-solid fa-cube hidden text-lg text-white"></i>
+                            </a>
+                            <a href="https://ru.namemc.com/profile/yusttyy" target="_blank" rel="noopener noreferrer" title="NameMC" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/namemc.png" alt="NameMC" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-solid fa-cubes hidden text-lg text-white"></i>
+                            </a>
+                            <a href="https://depthspelunking.miraheze.org/wiki/User:Yusttyy" target="_blank" rel="noopener noreferrer" title="DS Wiki" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/dswiki.png" alt="DS Wiki" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-solid fa-compass hidden text-lg text-white"></i>
+                            </a>
+                            <a href="https://fischipedia.org/wiki/User:Yusttyy" target="_blank" rel="noopener noreferrer" title="Fischipedia" class="social-btn aspect-square rounded-xl flex items-center justify-center p-2.5">
+                                <img src="icons/fischwiki.png" alt="Fischipedia" class="social-icon w-6 h-6 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                                <i class="fa-solid fa-fish hidden text-lg text-white"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <section class="content-section">
-            <div class="section-container section-left">
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>The second wiki I work on is <a href="https://depthspelunking.miraheze.org" class="wiki-link"><b>Depth Spelunking Wiki</b></a>. I made my first edit there on February 7th, and in less than two months I became an interface admin. As I mentioned earlier, I was the one who suggested this wiki join the IRWA alliance.</p>
-                        <p>Currently, actively working on it and have over 2500 edits.<br>
-                        <a href="https://depthspelunking.miraheze.org/wiki/User:Yusttyy" class="wiki-link">https://depthspelunking.miraheze.org/wiki/User:Yusttyy</a></p>
-                    </div>
-                </div>
-                <div class="section-image">
-                    <img src="images/dswiki.png" alt="Depth Spelunking">
-                </div>
+        <!-- РАЗДЕЛИТЕЛЬ КАТЕГОРИИ 1: WIKI EXP -->
+        <div id="wiki" class="category-divider pt-2">
+            <div class="category-badge px-5 py-2 rounded-full flex items-center gap-2.5">
+                <i class="fa-solid fa-book-open text-xs text-[#6ea8fe]"></i>
+                <span class="font-display font-bold text-xs sm:text-sm uppercase tracking-widest text-white">Wiki Exp</span>
             </div>
-        </section>
-
-        <div class="separator"></div>
-
-        <section id="discord" class="content-section">
-            <div class="section-container section-right">
-                <div class="section-image">
-                    <img src="images/discord1.png" alt="Discord1">
-                </div>
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>The last server I managed was <b>Fafaland</b>. I created it to bring a small community together and help it grow. I was in charge of both the technical side and the day-to-day management — creating unique channels and styling them, designing nice role colors and icons, setting up color-roles that members could earn and trade later, building unusual automated systems with those color-roles, making interesting custom bot commands, creating polls and votes, and organising events. For the most part, I handled everything on the server by myself. On top of that, I covered the costs for server boosts to reach Level 2, as well as for a custom tag and gradient roles. I also wanted to fund a Minecraft server myself, but I never got the opportunity. Unfortunately, due to internal drama among the admin team, the server had to be shut down, and at that point it had over 150 members.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <div class="section-container section-left">
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>Before that, I worked on setup and management for a Russian-speaking server with 1500+ members - <b>Hizoka's Fishing Hub</b>. I was the only admin there for almost a year. My responsibilities were pretty similar to Fafaland - for example, creating and styling channels, designing roles, creating interesting and unique features, and so on. Just like on the next server, I also spent my own money on boosts.</p>
-                    </div>
-                </div>
-                <div class="section-image">
-                    <img src="images/misc1.png" alt="Misc1">
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <div class="section-container section-right">
-                <div class="section-image">
-                    <img src="images/misc2.png" alt="Misc2">
-                </div>
-                <div class="section-text">
-                    <div class="hero-text">
-                        <p>There were also a few other servers, including Telegram chats, where I was made deputy head, and sometimes given full control. Same as before - I took on almost all the responsibilities myself.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-</main>
-
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-copyright">
-            © 2026 YUSTTYY. All rights reserved.
         </div>
-         <div class="footer-tagline">
-            Wiki & Discord Enthusiast
-        </div>
-    </div>
-</footer>
 
-<script src="Discord.js"></script>
-<script src="Mobburg.js"></script>
+        <!-- WIKI EXPERIENCE SECTION (Чередующиеся блоки слева/справа как в оригинале) -->
+        <div class="space-y-6">
+
+            <!-- Секция 1: Текст слева, Картинка справа (IRWA) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-text md:col-span-7">
+                        <div class="hero-text text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                I'm a member of the <a href="https://indierobloxwikis.org" target="_blank" rel="noopener noreferrer" class="wiki-link"><b>Independent Roblox Wiki Alliance</b></a> (IRWA), which is basically a group of independent Roblox wikis working together. The idea is to help each other grow and get things done - whether that's through direct support, building tools, or just helping newer wikis find their own space. I joined the alliance because I'm a staff member of Fischipedia, and after some time I brought in another wiki.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="section-image md:col-span-5">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/irwa.png" alt="IRWA" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/irwa.png
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 2: Картинка слева, Текст справа (Fischipedia) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-image md:col-span-5 order-2 md:order-1">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/fischwiki.png" alt="Fischipedia" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/fischwiki.png
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-text md:col-span-7 order-1 md:order-2">
+                        <div class="hero-text space-y-4 text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                My experience with wikis started with <a href="https://fischipedia.org" target="_blank" rel="noopener noreferrer" class="wiki-link"><b>Fischipedia</b></a> - the official wiki for Fisch, and one of the largest wikis created on Miraheze. I created my account in December 2024, and by January 2025 I had become an official editor. After working on it for 9 months (with some breaks), in October of that same year I became a moderator (or Wiki Staff). Today, I am one of the oldest editors still working on the wiki.
+                            </p>
+                            <p>
+                                Currently, I'm inactive and have over 2800 edits.<br>
+                                <a href="https://fischipedia.org/wiki/User:Yusttyy" target="_blank" rel="noopener noreferrer" class="wiki-link break-all">https://fischipedia.org/wiki/User:Yusttyy</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 3: Текст слева, Картинка справа (Depth Spelunking) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-text md:col-span-7">
+                        <div class="hero-text space-y-4 text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                The second wiki I work on is <a href="https://depthspelunking.miraheze.org" target="_blank" rel="noopener noreferrer" class="wiki-link"><b>Depth Spelunking Wiki</b></a>. I made my first edit there on February 7th, and in less than two months I became an interface admin. As I mentioned earlier, I was the one who suggested this wiki join the IRWA alliance.
+                            </p>
+                            <p>
+                                Currently, actively working on it and have over 2500 edits.<br>
+                                <a href="https://depthspelunking.miraheze.org/wiki/User:Yusttyy" target="_blank" rel="noopener noreferrer" class="wiki-link break-all">https://depthspelunking.miraheze.org/wiki/User:Yusttyy</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="section-image md:col-span-5">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/dswiki.png" alt="Depth Spelunking" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/dswiki.png
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- РАЗДЕЛИТЕЛЬ КАТЕГОРИИ 2: DISCORD EXP -->
+        <div id="discord" class="category-divider pt-2">
+            <div class="category-badge px-5 py-2 rounded-full flex items-center gap-2.5">
+                <i class="fa-brands fa-discord text-xs text-[#6ea8fe]"></i>
+                <span class="font-display font-bold text-xs sm:text-sm uppercase tracking-widest text-white">Discord Exp</span>
+            </div>
+        </div>
+
+        <!-- DISCORD EXPERIENCE SECTION (Чередующиеся блоки слева/справа как в оригинале) -->
+        <div class="space-y-6">
+
+            <!-- Секция 4: Текст слева, Картинка справа (YurtLink - шаблон под заполнение) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-text md:col-span-7">
+                        <div class="hero-text space-y-3 text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                Currently, I'm working on <b class="text-white">YurtLink</b>
+                            </p>
+                            <p class="text-sm text-gray-400">
+                                Бла-бла-бла
+                            </p>
+                        </div>
+                    </div>
+                    <div class="section-image md:col-span-5">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/yurtlink.png" alt="YurtLink" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/yurtlink.png
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 5: Картинка слева, Текст справа (Fafaland) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-image md:col-span-5 order-2 md:order-1">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/discord1.png" alt="Discord1" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/discord1.png
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-text md:col-span-7 order-1 md:order-2">
+                        <div class="hero-text text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                The last server I managed was <b class="text-white">Fafaland</b>. I created it to bring a small community together and help it grow. I was in charge of both the technical side and the day-to-day management — creating unique channels and styling them, designing nice role colors and icons, setting up color-roles that members could earn and trade later, building unusual automated systems with those color-roles, making interesting custom bot commands, creating polls and votes, and organising events. For the most part, I handled everything on the server by myself. On top of that, I covered the costs for server boosts to reach Level 2, as well as for a custom tag and gradient roles. I also wanted to fund a Minecraft server myself, but I never got the opportunity. Unfortunately, due to internal drama among the admin team, the server had to be shut down, and at that point it had over 150 members.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 6: Текст слева, Картинка справа (Hizoka's Fishing Hub) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-text md:col-span-7">
+                        <div class="hero-text text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                Before that, I worked on setup and management for a Russian-speaking server with 1500+ members - <b class="text-white">Hizoka's Fishing Hub</b>. I was the only admin there for almost a year. My responsibilities were pretty similar to Fafaland - for example, creating and styling channels, designing roles, creating interesting and unique features, and so on. Just like on the next server, I also spent my own money on boosts.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="section-image md:col-span-5">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/misc1.png" alt="Misc1" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/misc1.png
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция 7: Картинка слева, Текст справа (Другие серверы и Telegram) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-image md:col-span-5 order-2 md:order-1">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/misc2.png" alt="Misc2" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/misc2.png
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-text md:col-span-7 order-1 md:order-2">
+                        <div class="hero-text text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                There were also a few other servers, including Telegram chats, where I was made deputy head, and sometimes given full control. Same as before - I took on almost all the responsibilities myself.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- РАЗДЕЛИТЕЛЬ КАТЕГОРИИ 3: TESTING EXP -->
+        <div id="testing" class="category-divider pt-2">
+            <div class="category-badge px-5 py-2 rounded-full flex items-center gap-2.5">
+                <i class="fa-solid fa-bug text-xs text-emerald-400"></i>
+                <span class="font-display font-bold text-xs sm:text-sm uppercase tracking-widest text-white">Testing Exp</span>
+            </div>
+        </div>
+
+        <!-- TESTING EXPERIENCE SECTION (Секция опыта в тестерстве / QA) -->
+        <div class="space-y-6">
+
+            <!-- Секция 8: Текст слева, Картинка справа (Testing / QA Exp - шаблон под заполнение) -->
+            <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
+                <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                    <div class="section-text md:col-span-7">
+                        <div class="hero-text space-y-4 text-[15px] sm:text-base leading-relaxed readable-text">
+                            <p>
+                                Alongside wiki editing and Discord management, I also have experience in Game Testing for <b class="text-white">Please Hold, Receiver!</b>. 
+                            </p>
+                            <p>
+                                Бла-бла-бла
+                            </p>
+                        </div>
+                    </div>
+                    <div class="section-image md:col-span-5">
+                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
+                            <img src="images/testing1.png" alt="Testing Experience" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
+                                images/testing1.png
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER (как в оригинале) -->
+    <footer class="footer nav-surface mt-12">
+        <div class="footer-container max-w-[1140px] mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-300">
+            <div class="footer-copyright">
+                © 2026 YUSTTYY. All rights reserved.
+            </div>
+            <div class="footer-tagline text-gray-400">
+                Wiki & Discord Enthusiast
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты: мобильное меню, автообновление Lanyard и симулятор яркой GIF -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Мобильное меню
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (hamburgerBtn && mobileNav) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isHidden = mobileNav.classList.contains('hidden');
+                    mobileNav.classList.toggle('hidden', !isHidden);
+                    hamburgerIcon.classList.toggle('fa-bars', !isHidden);
+                    hamburgerIcon.classList.toggle('fa-xmark', isHidden);
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNav.classList.add('hidden');
+                        hamburgerIcon.classList.add('fa-bars');
+                        hamburgerIcon.classList.remove('fa-xmark');
+                    });
+                });
+            }
+
+            // 2. Автообновление виджета Lanyard каждые 45 секунд
+            const lanyardImg = document.getElementById('lanyard-img');
+            if (lanyardImg) {
+                const baseUrl = 'https://lanyard.cnrad.dev/api/928978204801269771';
+                setInterval(() => {
+                    lanyardImg.src = `${baseUrl}?t=${Date.now()}`;
+                }, 45000);
+            }
+        });
+    </script>
 </body>
 </html>
