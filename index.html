@@ -89,11 +89,6 @@
             box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
         }
 
-        .surface-subcard {
-            background: rgba(18, 21, 28, 0.82);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-        }
-
         /* Навбар с плотной подложкой */
         .nav-surface {
             background: rgba(10, 12, 16, 0.88);
@@ -118,12 +113,6 @@
         .wiki-link:hover {
             color: #9ec5fe;
             border-bottom-color: #9ec5fe;
-        }
-
-        /* Разделитель секций */
-        .section-separator {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
         }
 
         /* Разделитель категорий с названием по центру */
@@ -222,7 +211,7 @@
 
     <main class="flex-grow max-w-[1140px] w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12">
 
-        <!-- HERO SECTION (Двухколоночная структура как в оригинале) -->
+        <!-- HERO SECTION -->
         <section id="home" class="hero-section scroll-mt-24">
             <div class="hero-container grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
 
@@ -263,9 +252,7 @@
                 <div class="hero-right lg:col-span-5 flex flex-col gap-5">
                     <!-- Верхняя карточка: Lanyard Discord -->
                     <div class="info-card surface-panel rounded-2xl p-4 flex flex-col">
-                        <div class="rounded-xl overflow-hidden bg-[#11141c] border border-white/10">
-                            <img id="lanyard-img" src="https://lanyard.cnrad.dev/api/928978204801269771" alt="lanyard profile readme" class="w-full h-auto block">
-                        </div>
+                        <img id="lanyard-img" src="https://lanyard.cnrad.dev/api/928978204801269771" alt="lanyard profile readme" class="w-full h-auto rounded-xl block">
                     </div>
 
                     <!-- Нижняя карточка: Достижения и иконки соцсетей -->
@@ -292,7 +279,7 @@
                             <div class="pt-2 mt-2 border-t border-white/10">
                                 <div class="achievement-item flex items-center gap-2.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
-                                    <span><b class="text-white">QA / Game Tester</b> @ [Project Name]</span>
+                                    <span><b class="text-white">QA / Game Tester</b> @ Please Hold, Receiver!</span>
                                 </div>
                             </div>
                         </div>
@@ -338,7 +325,7 @@
             </div>
         </div>
 
-        <!-- WIKI EXPERIENCE SECTION (Чередующиеся блоки слева/справа как в оригинале) -->
+        <!-- WIKI EXPERIENCE SECTION -->
         <div class="space-y-6">
 
             <!-- Секция 1: Текст слева, Картинка справа (IRWA) -->
@@ -352,11 +339,9 @@
                         </div>
                     </div>
                     <div class="section-image md:col-span-5">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/irwa.png" alt="IRWA" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/irwa.png
-                            </div>
+                        <img src="images/irwa.png" alt="IRWA" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/irwa.png
                         </div>
                     </div>
                 </div>
@@ -366,11 +351,9 @@
             <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
                 <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
                     <div class="section-image md:col-span-5 order-2 md:order-1">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/fischwiki.png" alt="Fischipedia" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/fischwiki.png
-                            </div>
+                        <img src="images/fischwiki.png" alt="Fischipedia" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/fischwiki.png
                         </div>
                     </div>
                     <div class="section-text md:col-span-7 order-1 md:order-2">
@@ -402,11 +385,9 @@
                         </div>
                     </div>
                     <div class="section-image md:col-span-5">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/dswiki.png" alt="Depth Spelunking" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/dswiki.png
-                            </div>
+                        <img src="images/dswiki.png" alt="Depth Spelunking" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/dswiki.png
                         </div>
                     </div>
                 </div>
@@ -422,10 +403,10 @@
             </div>
         </div>
 
-        <!-- DISCORD EXPERIENCE SECTION (Чередующиеся блоки слева/справа как в оригинале) -->
+        <!-- DISCORD EXPERIENCE SECTION -->
         <div class="space-y-6">
 
-            <!-- Секция 4: Текст слева, Картинка справа (YurtLink - шаблон под заполнение) -->
+            <!-- Секция 4: Текст слева, Картинка справа (YurtLink) -->
             <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
                 <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
                     <div class="section-text md:col-span-7">
@@ -439,11 +420,9 @@
                         </div>
                     </div>
                     <div class="section-image md:col-span-5">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/yurtlink.png" alt="YurtLink" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/yurtlink.png
-                            </div>
+                        <img src="images/yurtlink.png" alt="YurtLink" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/yurtlink.png
                         </div>
                     </div>
                 </div>
@@ -453,11 +432,9 @@
             <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
                 <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
                     <div class="section-image md:col-span-5 order-2 md:order-1">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/discord1.png" alt="Discord1" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/discord1.png
-                            </div>
+                        <img src="images/discord1.png" alt="Discord1" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/discord1.png
                         </div>
                     </div>
                     <div class="section-text md:col-span-7 order-1 md:order-2">
@@ -481,11 +458,9 @@
                         </div>
                     </div>
                     <div class="section-image md:col-span-5">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/misc1.png" alt="Misc1" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/misc1.png
-                            </div>
+                        <img src="images/misc1.png" alt="Misc1" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/misc1.png
                         </div>
                     </div>
                 </div>
@@ -495,11 +470,9 @@
             <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
                 <div class="section-container section-right grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
                     <div class="section-image md:col-span-5 order-2 md:order-1">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/misc2.png" alt="Misc2" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/misc2.png
-                            </div>
+                        <img src="images/misc2.png" alt="Misc2" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/misc2.png
                         </div>
                     </div>
                     <div class="section-text md:col-span-7 order-1 md:order-2">
@@ -522,10 +495,10 @@
             </div>
         </div>
 
-        <!-- TESTING EXPERIENCE SECTION (Секция опыта в тестерстве / QA) -->
+        <!-- TESTING EXPERIENCE SECTION -->
         <div class="space-y-6">
 
-            <!-- Секция 8: Текст слева, Картинка справа (Testing / QA Exp - шаблон под заполнение) -->
+            <!-- Секция 8: Текст слева, Картинка справа -->
             <section class="content-section surface-panel rounded-2xl p-6 sm:p-8">
                 <div class="section-container section-left grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
                     <div class="section-text md:col-span-7">
@@ -539,11 +512,9 @@
                         </div>
                     </div>
                     <div class="section-image md:col-span-5">
-                        <div class="surface-subcard rounded-xl overflow-hidden p-1.5">
-                            <img src="images/testing1.png" alt="Testing Experience" class="w-full h-auto aspect-video object-cover rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden aspect-video rounded-lg bg-[#11141c] items-center justify-center text-gray-400 text-xs font-mono">
-                                images/testing1.png
-                            </div>
+                        <img src="images/testing1.png" alt="Testing Experience" class="w-full h-auto rounded-lg block" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden py-10 items-center justify-center text-gray-400 text-xs font-mono">
+                            images/testing1.png
                         </div>
                     </div>
                 </div>
@@ -553,7 +524,7 @@
 
     </main>
 
-    <!-- FOOTER (как в оригинале) -->
+    <!-- FOOTER -->
     <footer class="footer nav-surface mt-12">
         <div class="footer-container max-w-[1140px] mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-gray-300">
             <div class="footer-copyright">
@@ -565,7 +536,7 @@
         </div>
     </footer>
 
-    <!-- Скрипты: мобильное меню, автообновление Lanyard и симулятор яркой GIF -->
+    <!-- Скрипты: мобильное меню и автообновление Lanyard -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Мобильное меню
